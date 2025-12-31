@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy New Year 🎁</title>
+
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffe6f0, #ffffff);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont;
+    overflow: hidden;
+  }
+
+  .box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 26px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    animation: float 3s ease-in-out infinite;
+    z-index: 2;
+
+    width: 90vw;
+    max-width: 420px;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  button {
+    padding: 12px 24px;
+    border-radius: 16px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 6px;
+  }
+
+  .yes {
+    background: #ff7eb3;
+    color: white;
+  }
+
+  .no {
+    background: #ddd;
+  }
+
+  /* 💗 floating hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    color: #ff7eb3;
+    animation: rise linear infinite;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
+  }
+
+  /* 🐱 meme */
+  .meme {
+    width: 180px;
+    margin: 15px auto;
+    border-radius: 16px;
+    display: block;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: wiggle 1.5s ease-in-out infinite;
+  }
+
+  @keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  /* 📱 mobile optimize */
+  @media (max-width: 480px) {
+    .meme {
+      width: 220px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box" id="box">
+  <h1>🎆 Happy New Year 🎆</h1>
+  <p>คุณอยากเปิดของขวัญไหม</p>
+  <button class="yes" onclick="openGift()">Yes</button>
+  <button class="no" onclick="thinkAgain()">No</button>
+</div>
+
+<script>
+  function thinkAgain() {
+    document.getElementById("box").innerHTML = `
+      <h1>🤍 แน่ใจหรอ</h1>
+      <img src="meme.png" alt="cute meme" class="meme">
+      <p>ลองคิดอีกทีนะ ของขวัญอาจจะน่ารักกว่าที่คิด</p>
+      <button class="yes" onclick="openGift()">ก็ได้ ก็ได้ เซ้าซี้จัง</button>
+    `;
+  }
+
+  function openGift() {
+    document.getElementById("box").innerHTML = `
+      <h1>🎁 สุขสันต์ปีใหม่นะ</h1>
+      <img src="meme2.jpg" alt="cute meme 2" class="meme">
+      <p>เราขอเป็นเรื่องดีๆ เรื่องแรกของเธอในปีนี้นะ ❤</p>
+      <button class="yes" onclick="goToSong()">🎧 เปิดของขวัญ</button>
+    `;
+  }
+
+  function goToSong() {
+    window.open(
+      "https://www.youtube.com/watch?v=x9kvQy2kTGE",
+      "_blank"
+    );
+  }
+
+  // 💗 generate hearts
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+  }, 500);
+</script>
+
+</body>
+</html>
